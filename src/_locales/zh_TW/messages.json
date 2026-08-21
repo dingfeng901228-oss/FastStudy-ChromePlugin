@@ -12,10 +12,25 @@
     "message": "尚未連線"
   },
   "connect": {
-    "message": "連線 FastStudy"
+    "message": "連線"
   },
   "connectPrompt": {
     "message": "將收藏的日語單字同步到 FastStudy。"
+  },
+  "connectHelp": {
+    "message": "在 jp.frank2025.com 設定中產生連線碼，貼到這裡。"
+  },
+  "connectInputPlaceholder": {
+    "message": "XXXX-XXXX"
+  },
+  "connectInvalidCode": {
+    "message": "連線碼格式錯誤（應為 XXXX-XXXX）"
+  },
+  "connecting": {
+    "message": "連線中…"
+  },
+  "connectGetCode": {
+    "message": "沒有連線碼？去 Settings 產生 →"
   },
   "todaySaved": {
     "message": "今日收藏"

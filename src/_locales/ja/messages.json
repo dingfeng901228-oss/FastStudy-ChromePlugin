@@ -12,10 +12,25 @@
     "message": "未接続"
   },
   "connect": {
-    "message": "FastStudy に接続"
+    "message": "接続"
   },
   "connectPrompt": {
     "message": "集めた日本語の単語を FastStudy に同期します。"
+  },
+  "connectHelp": {
+    "message": "jp.frank2025.com 設定で接続コードを発行してここに貼り付けてください。"
+  },
+  "connectInputPlaceholder": {
+    "message": "XXXX-XXXX"
+  },
+  "connectInvalidCode": {
+    "message": "コードの形式が正しくありません（XXXX-XXXX の形式）"
+  },
+  "connecting": {
+    "message": "接続中…"
+  },
+  "connectGetCode": {
+    "message": "コードがない場合は Settings で発行 →"
   },
   "todaySaved": {
     "message": "今日"

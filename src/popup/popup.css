@@ -157,6 +157,45 @@ body {
   line-height: 1.5;
 }
 
+.cta-help {
+  margin: -6px 0 10px;
+  color: var(--text-dim);
+  font-size: 11px;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+
+.code-input {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 10px 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: lowercase;
+}
+
+.code-input::placeholder {
+  letter-spacing: 0.08em;
+  font-weight: 400;
+  color: var(--text-dim);
+  opacity: 0.6;
+}
+
+.connect-error {
+  margin: 0 0 8px;
+  padding: 6px 10px;
+  background: var(--error-dim);
+  color: var(--error);
+  border: 1px solid rgba(252, 165, 165, 0.4);
+  border-radius: 4px;
+  font-size: 11px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
 /* ---- status row (connection status / pending / actions) ---- */
 
 .status-row {

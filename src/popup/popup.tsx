@@ -5,6 +5,22 @@ import { getSettings } from '../lib/settings';
 import { listPending } from '../lib/db';
 import type { PendingVocabulary } from '../lib/types';
 
+const BACKEND_BASE = 'https://jp.frank2025.com';
+const REDEEM_ENDPOINT = `${BACKEND_BASE}/api/extension/redeem`;
+const SETTINGS_URL = `${BACKEND_BASE}/settings/browser-extension`;
+
+/** Strip non-alphanumeric, lowercase, insert hyphen after 4 chars.
+ *  Handles raw paste (e.g. "p6e8byda" or "P6E8-BYDA") → "p6e8-byda". */
+function formatCodeInput(s: string): string {
+  const clean = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  if (clean.length <= 4) return clean;
+  return clean.slice(0, 4) + '-' + clean.slice(4, 8);
+}
+
+function isValidCode(s: string): boolean {
+  return /^[a-z0-9]{4}-[a-z0-9]{4}$/.test(s);
+}
+
 type View = 'home' | 'settings';
 
 interface PopupState {
@@ -49,6 +65,8 @@ const Popup: React.FC = () => {
   const [view, setView] = useState<View>('home');
   const [state, setState] = useState<PopupState>(EMPTY_STATE);
   const [busy, setBusy] = useState(false);
+  const [codeInput, setCodeInput] = useState('');
+  const [connectError, setConnectError] = useState<string | null>(null);
 
   // Initial load + react to storage changes (toasts + queue updates).
   useEffect(() => {
@@ -99,9 +117,51 @@ const Popup: React.FC = () => {
   }, []);
 
   const handleConnectClick = () => {
-    chrome.tabs.create({
-      url: 'https://jp.frank2025.com/settings/browser-extension',
-    });
+    chrome.tabs.create({ url: SETTINGS_URL });
+  };
+
+  const handleConnect = async () => {
+    const code = codeInput.trim();
+    if (!isValidCode(code)) {
+      setConnectError(t('connectInvalidCode') || '连接码格式错误（应为 XXXX-XXXX）');
+      return;
+    }
+    setBusy(true);
+    setConnectError(null);
+    try {
+      const res = await fetch(REDEEM_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success || !data.token) {
+        // Map known error codes to user-friendly messages.
+        const code = data?.error ?? '';
+        const friendly =
+          code === 'expired_code'
+            ? '连接码已过期（10分钟），请回到 Settings 重新生成'
+            : code === 'already_consumed'
+            ? '连接码已使用过，请回到 Settings 重新生成'
+            : code === 'invalid_code'
+            ? '连接码无效，请检查后重试'
+            : `连接失败：${code || res.status}`;
+        setConnectError(friendly);
+        return;
+      }
+      // Save token + label + connectedAt. The chrome.storage.onChanged
+      // listener at the top picks this up and re-renders the popup.
+      await chrome.storage.local.set({
+        extensionToken: data.token,
+        tokenLabel: data.label ?? null,
+        connectedAt: Date.now(),
+      });
+      setCodeInput('');
+    } catch (err) {
+      setConnectError(`连接失败：${String(err)}`);
+    } finally {
+      setBusy(false);
+    }
   };
 
   const handleSyncNow = async () => {
@@ -201,8 +261,45 @@ const Popup: React.FC = () => {
                 {t('connectPrompt') ||
                   '将收藏的日语单词同步到 FastStudy。'}
               </p>
-              <button className="btn-primary" onClick={handleConnectClick}>
-                {t('connect') || '连接 FastStudy'}
+              <p className="cta-help">
+                {t('connectHelp') ||
+                  '在 jp.frank2025.com 设置中生成连接码，粘贴到这里。'}
+              </p>
+              <input
+                type="text"
+                inputMode="text"
+                autoComplete="off"
+                spellCheck={false}
+                value={codeInput}
+                onChange={(e) => {
+                  setCodeInput(formatCodeInput(e.target.value));
+                  setConnectError(null);
+                }}
+                placeholder={t('connectInputPlaceholder') || 'XXXX-XXXX'}
+                maxLength={9}
+                className="code-input"
+                aria-label={t('connectInputPlaceholder') || 'XXXX-XXXX'}
+              />
+              {connectError && (
+                <div className="connect-error" role="alert">
+                  ✗ {connectError}
+                </div>
+              )}
+              <button
+                className="btn-primary btn-block"
+                onClick={handleConnect}
+                disabled={busy || !isValidCode(codeInput)}
+              >
+                {busy
+                  ? (t('connecting') || '连接中…')
+                  : (t('connect') || '连接')}
+              </button>
+              <button
+                className="btn-link"
+                onClick={handleConnectClick}
+                style={{ marginTop: 8, display: 'block', textAlign: 'center' }}
+              >
+                {t('connectGetCode') || '没有连接码？去 Settings 生成 →'}
               </button>
             </section>
           ) : (

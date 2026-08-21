@@ -16,12 +16,32 @@
     "description": "Connection status badge when no token is configured."
   },
   "connect": {
-    "message": "Connect to FastStudy",
-    "description": "CTA button label in the disconnected popup state."
+    "message": "Connect",
+    "description": "Submit button label for pasting a connection code."
   },
   "connectPrompt": {
     "message": "Sync the Japanese words you collect to your FastStudy account.",
     "description": "Body copy under the connect CTA."
+  },
+  "connectHelp": {
+    "message": "Generate a connection code at jp.frank2025.com settings, paste it here.",
+    "description": "Help text under the connect prompt."
+  },
+  "connectInputPlaceholder": {
+    "message": "XXXX-XXXX",
+    "description": "Placeholder text for the connection code input in the disconnected popup state."
+  },
+  "connectInvalidCode": {
+    "message": "Invalid code format (expected XXXX-XXXX)",
+    "description": "Error shown when the user enters an invalid connection code."
+  },
+  "connecting": {
+    "message": "Connecting...",
+    "description": "Button label while the connection request is in flight."
+  },
+  "connectGetCode": {
+    "message": "Need a code? Generate one in Settings →",
+    "description": "Link to open the website settings page to mint a code."
   },
   "todaySaved": {
     "message": "Today",

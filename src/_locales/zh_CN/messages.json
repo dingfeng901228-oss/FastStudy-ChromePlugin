@@ -12,10 +12,25 @@
     "message": "尚未连接"
   },
   "connect": {
-    "message": "连接 FastStudy"
+    "message": "连接"
   },
   "connectPrompt": {
     "message": "将收藏的日语单词同步到 FastStudy。"
+  },
+  "connectHelp": {
+    "message": "在 jp.frank2025.com 设置中生成连接码，粘贴到这里。"
+  },
+  "connectInputPlaceholder": {
+    "message": "XXXX-XXXX"
+  },
+  "connectInvalidCode": {
+    "message": "连接码格式错误（应为 XXXX-XXXX）"
+  },
+  "connecting": {
+    "message": "连接中…"
+  },
+  "connectGetCode": {
+    "message": "没有连接码？去 Settings 生成 →"
   },
   "todaySaved": {
     "message": "今日收藏"
