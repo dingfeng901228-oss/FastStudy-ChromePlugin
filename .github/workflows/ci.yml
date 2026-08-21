@@ -1,0 +1,83 @@
+# GitHub Actions CI for FastStudy Chrome Plugin.
+#
+# Runs on every push and PR to main: install deps, type-check, run
+# vitest unit tests, then build the extension bundle. The built `dist/`
+# is uploaded as an artifact so reviewers can install the PR build
+# manually for smoke-testing (load unpacked from the artifact zip).
+#
+# Why these specific checks:
+#   - `npm ci` (not `npm install`) so the lockfile is the source of
+#     truth — catches drift between package.json and package-lock.json.
+#   - `tsc --noEmit` (same flags as `npm run type-check`) so editor
+#     and CI use identical rules.
+#   - `vitest run` (not `vitest --watch`) for the one-shot CI mode.
+#   - `vite build` so the CI verifies the Vite + crxjs pipeline
+#     actually emits a valid Chrome MV3 bundle (manifest.json,
+#     service-worker, popup assets, _locales/).
+#
+# Out of scope (intentionally not tested here):
+#   - Real Chrome extension runtime (would need Playwright + a
+#     headless Chrome with the extension loaded — V2 if needed).
+#   - Visual UI snapshot tests on the popup.
+#   - Cross-browser sanity (Edge / Brave / Arc — same MV3 API).
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Cancel in-progress runs for the same branch when a new commit
+# comes in (saves CI minutes on rapid pushes).
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: type-check + test + build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          # Use lockfileVersion 3 (npm 7+); Node 22 ships with npm 10.
+
+      - name: Install dependencies
+        run: npm ci --no-audit --fund=false
+
+      - name: Type-check (tsc --noEmit)
+        run: npm run type-check
+
+      - name: Unit tests (vitest run)
+        # vite.config.ts is loaded by vitest — make sure it doesn't
+        # trigger crxjs Vite plugin side effects (we exclude it).
+        run: npx vitest run --config ./vitest.config.ts
+
+      - name: Build extension (vite build)
+        run: npm run build
+
+      - name: Verify manifest + _locales present
+        run: |
+          test -f dist/manifest.json || (echo "ERROR: dist/manifest.json missing" && exit 1)
+          test -f dist/_locales/en/messages.json || (echo "ERROR: _locales/en/messages.json missing" && exit 1)
+          test -d dist/icons || (echo "ERROR: dist/icons/ missing" && exit 1)
+          echo "OK: manifest.json, _locales/, icons/ all present"
+
+      - name: Upload dist/ artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: faststudy-chrome-plugin-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14

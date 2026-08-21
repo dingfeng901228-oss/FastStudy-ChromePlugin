@@ -1,0 +1,34 @@
+# Dependabot for FastStudy Chrome Plugin.
+#
+# Weekly npm ecosystem pull-requests. Grouped so a single PR covers
+# all patch/minor updates (less PR noise). Major updates land as
+# individual PRs for human review since they may need spec.md updates.
+
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    # Group patch + minor updates together to reduce PR noise.
+    groups:
+      patch-minor:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+    # Skip @types/* major bumps unless explicitly enabled
+    # (TypeScript usually catches incompatible @types in CI).
+    labels:
+      - "dependencies"
+      - "npm"
+    commit-message:
+      prefix: "chore(deps)"
+    # Allow direct commits by dependabot
+    # (no PR auto-merge — human reviews since this is a public repo
+    # and the Chrome Web Store submission depends on stable builds).
+    open-pull-requests-limit: 5
