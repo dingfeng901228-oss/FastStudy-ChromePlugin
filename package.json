@@ -1,0 +1,33 @@
+{
+  "name": "faststudy-chrome-plugin",
+  "displayName": "FastStudy 日语生词收藏",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Save Japanese vocabulary from any webpage to FastStudy (jp.frank2025.com). Right-click selected Japanese text to collect.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "lucide-react": "^0.460.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@crxjs/vite-plugin": "^2.7.1",
+    "@types/chrome": "^0.0.270",
+    "@types/node": "^22.20.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "sharp": "^0.35.3",
+    "typescript": "^5.5.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.0"
+  }
+}

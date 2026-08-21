@@ -1,0 +1,89 @@
+{
+  "appName": {
+    "message": "FastStudy 単語コレクター"
+  },
+  "contextMenuCollect": {
+    "message": "単語として保存"
+  },
+  "connected": {
+    "message": "接続済み"
+  },
+  "disconnected": {
+    "message": "未接続"
+  },
+  "connect": {
+    "message": "FastStudy に接続"
+  },
+  "connectPrompt": {
+    "message": "集めた日本語の単語を FastStudy に同期します。"
+  },
+  "todaySaved": {
+    "message": "今日"
+  },
+  "weekSaved": {
+    "message": "今週"
+  },
+  "pending": {
+    "message": "同期待ち"
+  },
+  "syncNow": {
+    "message": "今すぐ同期"
+  },
+  "attempts": {
+    "message": "試行回数"
+  },
+  "more": {
+    "message": "以上"
+  },
+  "openVocab": {
+    "message": "単語帳を開く"
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "settingsTitle": {
+    "message": "設定"
+  },
+  "back": {
+    "message": "戻る"
+  },
+  "device": {
+    "message": "デバイス"
+  },
+  "connectedAt": {
+    "message": "接続日時"
+  },
+  "lastSync": {
+    "message": "最終同期"
+  },
+  "clearPending": {
+    "message": "同期待ちを削除"
+  },
+  "disconnect": {
+    "message": "接続を解除"
+  },
+  "reconnectHint": {
+    "message": "接続を解除したら、jp.frank2025.com/settings/browser-extension で接続コードを再発行してください。"
+  },
+  "confirmClearPending": {
+    "message": "同期待ちの項目をすべて削除しますか？再アップロードされません。"
+  },
+  "toastAuthTitle": {
+    "message": "まず FastStudy に接続してください"
+  },
+  "toastSuccessTitle": {
+    "message": "保存しました"
+  },
+  "toastDuplicateTitle": {
+    "message": "保存済みです"
+  },
+  "toastNetworkTitle": {
+    "message": "保存に失敗しました"
+  },
+  "toastAuthRevokedTitle": {
+    "message": "FastStudy の接続が無効です"
+  },
+  "toastErrorTitle": {
+    "message": "保存に失敗しました"
+  }
+}

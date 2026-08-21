@@ -1,0 +1,89 @@
+{
+  "appName": {
+    "message": "FastStudy 日語生詞收藏"
+  },
+  "contextMenuCollect": {
+    "message": "收藏為生詞"
+  },
+  "connected": {
+    "message": "已連線"
+  },
+  "disconnected": {
+    "message": "尚未連線"
+  },
+  "connect": {
+    "message": "連線 FastStudy"
+  },
+  "connectPrompt": {
+    "message": "將收藏的日語單字同步到 FastStudy。"
+  },
+  "todaySaved": {
+    "message": "今日收藏"
+  },
+  "weekSaved": {
+    "message": "本週收藏"
+  },
+  "pending": {
+    "message": "待同步"
+  },
+  "syncNow": {
+    "message": "立即同步"
+  },
+  "attempts": {
+    "message": "嘗試"
+  },
+  "more": {
+    "message": "更多"
+  },
+  "openVocab": {
+    "message": "開啟我的詞彙庫"
+  },
+  "settings": {
+    "message": "設定"
+  },
+  "settingsTitle": {
+    "message": "設定"
+  },
+  "back": {
+    "message": "返回"
+  },
+  "device": {
+    "message": "裝置"
+  },
+  "connectedAt": {
+    "message": "連線於"
+  },
+  "lastSync": {
+    "message": "最後同步"
+  },
+  "clearPending": {
+    "message": "清空待同步"
+  },
+  "disconnect": {
+    "message": "解除連線"
+  },
+  "reconnectHint": {
+    "message": "解除連線後，請在 jp.frank2025.com/settings/browser-extension 重新產生連線碼。"
+  },
+  "confirmClearPending": {
+    "message": "清空所有待同步項？這些項不會再被上傳。"
+  },
+  "toastAuthTitle": {
+    "message": "請先連線 FastStudy"
+  },
+  "toastSuccessTitle": {
+    "message": "已收藏"
+  },
+  "toastDuplicateTitle": {
+    "message": "已收藏過"
+  },
+  "toastNetworkTitle": {
+    "message": "收藏失敗"
+  },
+  "toastAuthRevokedTitle": {
+    "message": "FastStudy 連線已失效"
+  },
+  "toastErrorTitle": {
+    "message": "收藏失敗"
+  }
+}

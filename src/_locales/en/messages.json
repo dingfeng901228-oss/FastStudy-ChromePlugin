@@ -1,0 +1,118 @@
+{
+  "appName": {
+    "message": "FastStudy",
+    "description": "Extension display name (shown in popup header + chrome://extensions)."
+  },
+  "contextMenuCollect": {
+    "message": "Save as vocabulary",
+    "description": "Right-click menu item label (shown when user selects Japanese text)."
+  },
+  "connected": {
+    "message": "Connected",
+    "description": "Connection status badge when the extension has a valid token."
+  },
+  "disconnected": {
+    "message": "Not connected",
+    "description": "Connection status badge when no token is configured."
+  },
+  "connect": {
+    "message": "Connect to FastStudy",
+    "description": "CTA button label in the disconnected popup state."
+  },
+  "connectPrompt": {
+    "message": "Sync the Japanese words you collect to your FastStudy account.",
+    "description": "Body copy under the connect CTA."
+  },
+  "todaySaved": {
+    "message": "Today",
+    "description": "Stat card label: vocabulary items saved today."
+  },
+  "weekSaved": {
+    "message": "This week",
+    "description": "Stat card label: vocabulary items saved in the last 7 days."
+  },
+  "pending": {
+    "message": "Pending sync",
+    "description": "Pending queue label (count of items waiting to upload)."
+  },
+  "syncNow": {
+    "message": "Sync now",
+    "description": "Button: flush the offline queue immediately."
+  },
+  "attempts": {
+    "message": "Attempts",
+    "description": "Pending row label: number of failed sync attempts."
+  },
+  "more": {
+    "message": "more",
+    "description": "Truncation hint when the pending list is collapsed."
+  },
+  "openVocab": {
+    "message": "Open my vocabulary",
+    "description": "CTA: jump to jp.frank2025.com/vocabulary."
+  },
+  "settings": {
+    "message": "Settings",
+    "description": "Settings nav link / page title."
+  },
+  "settingsTitle": {
+    "message": "Settings",
+    "description": "Heading on the settings page."
+  },
+  "back": {
+    "message": "Back",
+    "description": "Back button on settings page."
+  },
+  "device": {
+    "message": "Device",
+    "description": "Label: free-form device label like 'Chrome / Windows'."
+  },
+  "connectedAt": {
+    "message": "Connected at",
+    "description": "Label: when the current token was first connected."
+  },
+  "lastSync": {
+    "message": "Last sync",
+    "description": "Label: when the offline queue was last flushed."
+  },
+  "clearPending": {
+    "message": "Clear pending",
+    "description": "Button: drop all offline-queued items (with confirm)."
+  },
+  "disconnect": {
+    "message": "Disconnect",
+    "description": "Button: revoke the current token and clear stored credentials."
+  },
+  "reconnectHint": {
+    "message": "After disconnecting, regenerate a connection code at jp.frank2025.com/settings/browser-extension.",
+    "description": "Help text under the disconnect button."
+  },
+  "confirmClearPending": {
+    "message": "Clear all pending items? They will NOT be re-synced.",
+    "description": "Confirm prompt for the clear-pending action."
+  },
+  "toastAuthTitle": {
+    "message": "Please connect FastStudy first",
+    "description": "Toast title when user tries to save without a token."
+  },
+  "toastSuccessTitle": {
+    "message": "Saved",
+    "description": "Toast title on successful vocabulary save (HTTP 201)."
+  },
+  "toastDuplicateTitle": {
+    "message": "Already saved",
+    "description": "Toast title when vocabulary is a duplicate (HTTP 200)."
+  },
+  "toastNetworkTitle": {
+    "message": "Save failed",
+    "description": "Toast title on network failure."
+  },
+  "toastAuthRevokedTitle": {
+    "message": "FastStudy connection lost",
+    "description": "Toast title on 401/403 — token revoked."
+  },
+  "toastErrorTitle": {
+    "message": "Save failed",
+    "description": "Toast title on server error (5xx) or validation error (422)."
+  }
+}
